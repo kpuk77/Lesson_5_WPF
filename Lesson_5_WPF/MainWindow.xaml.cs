@@ -23,6 +23,8 @@ namespace Lesson_5_WPF
         public MainWindow()
         {
             InitializeComponent();
+            Department department = new Department();
+            ListBox.ItemsSource = department.GetList();
         }
     }
 }

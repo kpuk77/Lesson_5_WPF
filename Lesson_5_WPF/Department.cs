@@ -24,7 +24,10 @@ namespace Lesson_5_WPF
                     Id = i,
                     Name = $"Имя {i}",
                     LastName = $"Фамилия {i}",
-                    Position = p++
+                    MiddleName = $"Отчество {i}",
+                    Age = i < 18 ? i + 20 : i,
+                    Position = p++ >= Position.Trainee?Position.Freelancer : Position.Employee, //  TODO
+                    Department = this
                 });
             }
         }
@@ -40,5 +43,9 @@ namespace Lesson_5_WPF
         public void SortByName() => _Employees.OrderBy(s => s.Name);
 
         public void SortByPosition() => _Employees.OrderBy(s => s.Position);
+
+        public List<Employee> GetList() => _Employees;
+
+        public override string ToString() => Name;
     }
 }

@@ -12,7 +12,7 @@
             <GradientStop Color="#FF404040" Offset="0"/>
         </RadialGradientBrush>
     </Window.Background>
-    <Grid ShowGridLines="True">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="250" MaxWidth="250"/>
             <ColumnDefinition/>
@@ -29,9 +29,15 @@
             <Button Content="Фамилия" Background="Black" Foreground="DarkGray" FontWeight="Bold" BorderThickness="0 0 1 0" Width="65"/>
             <Button Content="Отчество" Background="Black" Foreground="DarkGray" FontWeight="Bold" BorderThickness="0 0 1 0" Width="65"/>
             <Button Content="Возраст" Background="Black" Foreground="DarkGray" FontWeight="Bold" BorderThickness="0 0 1 0" Width="55"/>
+            <Button Content="Должность" Background="Black" Foreground="DarkGray" FontWeight="Bold" BorderThickness="0 0 1 0" Width="75"/>
             <Button Content="Департамент" Background="Black" Foreground="DarkGray" FontWeight="Bold" BorderThickness="0" Width="85"/>
         </StackPanel>
-        <ListBox Grid.Column="1" Grid.Row="2" Name="ListBox" Background="Black" BorderThickness="0 2 0 0" MinWidth="330" HorizontalAlignment="Center"/>
+        <ListBox Grid.Column="1" Grid.Row="2" Name="ListBox" Background="Black" 
+                 BorderThickness="0 2 0 0" 
+                 MinWidth="390" 
+                 HorizontalAlignment="Center"
+                 Foreground="DarkGray"
+                 FontWeight="Bold"/>
         <StackPanel Grid.Column="0" Grid.Row="1">
             <Button Height="30" Background="DarkBlue" Foreground="DarkGray" FontWeight="Bold" BorderThickness="0" Content="Сотрудники (в разработке)"/>
             <Button Height="30" Background="DarkBlue" Foreground="DarkGray" FontWeight="Bold" BorderThickness="0" Content="Департаменты (в разработке)"/>
@@ -39,7 +45,7 @@
         <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Width="83" Height="80" Content="+" FontSize="35" FontWeight="Bold" Background="DarkGreen" Foreground="DarkGray" BorderThickness="0"/>
             <Button Width="83" Height="80" Background="DarkOrange" BorderThickness="0">
-                <Image Source="images/edit.png" Width="50" Panel.ZIndex="3"/>
+                <Image Source="Resources/edit.png" Width="50" Panel.ZIndex="3"/>
             </Button>
             <Button Width="83" Height="80" Content="-" FontSize="35" FontWeight="Bold" Background="DarkRed" Foreground="DarkGray" BorderThickness="0"/>
         </StackPanel>
