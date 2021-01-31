@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Lesson_5_WPF
+﻿namespace Lesson_5_WPF
 {
     public class Employee
     {

@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 
 namespace Lesson_5_WPF
 {
     public class Department
     {
         private int Id { get; init; }
-        private List<Employee> _Employees;
+        private ObservableCollection<Employee> _Employees;
 
         public string Name { get; set; }
 
         public Department()
         {
-            _Employees = new List<Employee>(35);
+            _Employees = new ObservableCollection<Employee>();
             Position p = Position.Employee;
 
             for (int i = 1; i <= 35; i++)
@@ -36,15 +35,43 @@ namespace Lesson_5_WPF
 
         public void RemoveEmployee(Employee Employee) => _Employees.Remove(Employee);
 
-        public void SortByNameDescending() => _Employees.OrderByDescending(s => s.Name);
+        public void SortById()
+        {
+            var sortedList = new ObservableCollection<Employee>(_Employees.OrderBy(s => s.Id));
+            _Employees = sortedList;
+        }
 
-        public void SortByPositionDescending() => _Employees.OrderByDescending(s => s.Position);
+        public void SortByName()
+        {
+            var sortedList = new ObservableCollection<Employee>(_Employees.OrderBy(s => s.Name));
+            _Employees = sortedList;
+        }
 
-        public void SortByName() => _Employees.OrderBy(s => s.Name);
+        public void SortByPosition()
+        {
+            var sortedList = new ObservableCollection<Employee>(_Employees.OrderBy(s => s.Position));
+            _Employees = sortedList;
+        }
 
-        public void SortByPosition() => _Employees.OrderBy(s => s.Position);
+        public void SortByIdDescending()
+        {
+            var sortedList = new ObservableCollection<Employee>(_Employees.OrderByDescending(s => s.Id));
+            _Employees = sortedList;
+        }
 
-        public List<Employee> GetList() => _Employees;
+        public void SortByNameDescending()
+        {
+            var sortedList = new ObservableCollection<Employee>(_Employees.OrderByDescending(s => s.Name));
+            _Employees = sortedList;
+        }
+
+        public void SortByPositionDescending()
+        {
+            var sortedList = new ObservableCollection<Employee>(_Employees.OrderByDescending(s => s.Position));
+            _Employees = sortedList;
+        }
+
+        public ObservableCollection<Employee> GetList() => _Employees;
 
         public override string ToString() => Name;
     }
