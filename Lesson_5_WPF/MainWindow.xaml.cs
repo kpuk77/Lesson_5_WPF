@@ -18,50 +18,53 @@ namespace Lesson_5_WPF
 
         private void BtnSortById_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!__IsSorted)
-            {
-                Core.Department.SortById();
-                __IsSorted = true;
-                ListBox.ItemsSource = Core.Department.GetList();
-            }
-            else
-            {
-                Core.Department.SortByIdDescending();
-                __IsSorted = false;
-                ListBox.ItemsSource = Core.Department.GetList();
-            }
+            if (Core.Department.GetList() != null)
+                if (!__IsSorted)
+                {
+                    Core.Department.SortById();
+                    __IsSorted = true;
+                    ListBox.ItemsSource = Core.Department.GetList();
+                }
+                else
+                {
+                    Core.Department.SortByIdDescending();
+                    __IsSorted = false;
+                    ListBox.ItemsSource = Core.Department.GetList();
+                }
         }
 
         private void BtnSortByName_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!__IsSorted)
-            {
-                Core.Department.SortByName();
-                __IsSorted = true;
-                ListBox.ItemsSource = Core.Department.GetList();
-            }
-            else
-            {
-                Core.Department.SortByNameDescending();
-                __IsSorted = false;
-                ListBox.ItemsSource = Core.Department.GetList();
-            }
+            if (Core.Department.GetList() != null)
+                if (!__IsSorted)
+                {
+                    Core.Department.SortByName();
+                    __IsSorted = true;
+                    ListBox.ItemsSource = Core.Department.GetList();
+                }
+                else
+                {
+                    Core.Department.SortByNameDescending();
+                    __IsSorted = false;
+                    ListBox.ItemsSource = Core.Department.GetList();
+                }
         }
 
         private void BtnSortByPosition_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!__IsSorted)
-            {
-                Core.Department.SortByPosition();
-                __IsSorted = true;
-                ListBox.ItemsSource = Core.Department.GetList();
-            }
-            else
-            {
-                Core.Department.SortByPositionDescending();
-                __IsSorted = false;
-                ListBox.ItemsSource = Core.Department.GetList();
-            }
+            if (Core.Department.GetList() != null)
+                if (!__IsSorted)
+                {
+                    Core.Department.SortByPosition();
+                    __IsSorted = true;
+                    ListBox.ItemsSource = Core.Department.GetList();
+                }
+                else
+                {
+                    Core.Department.SortByPositionDescending();
+                    __IsSorted = false;
+                    ListBox.ItemsSource = Core.Department.GetList();
+                }
         }
 
         private void CbDepartments_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -120,6 +123,11 @@ namespace Lesson_5_WPF
             EditEmployeeWindow editEmployee = new EditEmployeeWindow(new Employee { Department = (Department)cbDepartments.SelectedItem });
             editEmployee.Title = $"Сотрудник {this.Name}";
             editEmployee.Show();
+            editEmployee.Closing += (_, _) =>
+            {
+                ListBox.ItemsSource = null;
+                ListBox.ItemsSource = Core.Department.GetList();
+            };
         }
 
         private void BtnRemoveEmployee_OnClick(object sender, RoutedEventArgs e)
@@ -161,7 +169,7 @@ namespace Lesson_5_WPF
             EditWindow editWindow = new EditWindow();
             editWindow.tbName.Text = Core.Department.Name;
             editWindow.Show();
-            editWindow.Closing += (_, _) 
+            editWindow.Closing += (_, _)
                 =>
             {
                 int index = cbDepartments.SelectedIndex;
@@ -173,7 +181,14 @@ namespace Lesson_5_WPF
 
         private void BtnRemoveGroup_OnClick(object sender, RoutedEventArgs e)
         {
-            Core.Departments.Remove((Department) cbDepartments.SelectedItem);
+            if (cbDepartments.SelectedItem == null)
+                return;
+            Core.Departments.Remove((Department)cbDepartments.SelectedItem);
+            if (Core.Departments.Count == 0)
+            {
+                cbDepartments.SelectedItem = null;
+                return;
+            }
             cbDepartments.SelectedItem = Core.Departments[0];
         }
 
