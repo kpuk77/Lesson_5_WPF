@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -7,16 +6,14 @@ namespace Lesson_5_WPF
 {
     public class Department
     {
-        private static int _Count = 0;
-        private int Id { get; init; }
+        private static int __Count;
         private ObservableCollection<Employee> _Employees;
 
         public string Name { get; set; }
 
         public Department()
         {
-            _Count++;
-            Id = _Count;
+            __Count++;
             Random rand = new Random();
             _Employees = new ObservableCollection<Employee>();
             Position p = Position.Employee;
@@ -35,16 +32,16 @@ namespace Lesson_5_WPF
             }
         }
 
-        public Department(string Name) : base() => this.Name = Name;
+        public Department(string name) => this.Name = name;
 
-        public void AddEmployee(Employee Employee)
+        public void AddEmployee(Employee employee)
         {
             if (_Employees == null)
                 _Employees = new ObservableCollection<Employee>();
-            _Employees.Add(Employee);
+            _Employees.Add(employee);
         }
 
-        public void RemoveEmployee(Employee Employee) => _Employees.Remove(Employee);
+        public void RemoveEmployee(Employee employee) => _Employees.Remove(employee);
 
         public void SortById()
         {

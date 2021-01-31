@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Lesson_5_WPF
 {
 
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         private static bool __IsSorted = true;
 
@@ -36,7 +32,7 @@ namespace Lesson_5_WPF
             }
         }
 
-        private void BtnSortByName_OnClick(object Sender, RoutedEventArgs E)
+        private void BtnSortByName_OnClick(object sender, RoutedEventArgs e)
         {
             if (!__IsSorted)
             {
@@ -52,7 +48,7 @@ namespace Lesson_5_WPF
             }
         }
 
-        private void BtnSortByPosition_OnClick(object Sender, RoutedEventArgs E)
+        private void BtnSortByPosition_OnClick(object sender, RoutedEventArgs e)
         {
             if (!__IsSorted)
             {
@@ -68,9 +64,9 @@ namespace Lesson_5_WPF
             }
         }
 
-        private void CbDepartments_OnSelectionChanged(object Sender, SelectionChangedEventArgs E)
+        private void CbDepartments_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var comboBox = (ComboBox)Sender;
+            var comboBox = (ComboBox)sender;
             var selectedItem = (Department)comboBox.SelectedItem;
             if (selectedItem == null)
                 return;
@@ -78,9 +74,9 @@ namespace Lesson_5_WPF
             ListBox.ItemsSource = Core.Department.GetList();
         }
 
-        private void ListBox_OnMouseDoubleClick(object Sender, MouseButtonEventArgs E)
+        private void ListBox_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var list = (ListBox)Sender;
+            var list = (ListBox)sender;
             var selectedItem = (Employee)list.SelectedItem;
 
             if (selectedItem == null)
@@ -89,12 +85,14 @@ namespace Lesson_5_WPF
             EditEmployeeWindow editEmployee = new EditEmployeeWindow(selectedItem);
             editEmployee.Title = $"Сотрудник {selectedItem.Name}";
             editEmployee.Show();
-            //editEmployee.Closing += EditEmployee_Closing;
+            editEmployee.Closing += (_, _) =>
+            {
+                ListBox.ItemsSource = null;
+                ListBox.ItemsSource = Core.Department.GetList();
+            };
         }
 
-        //private void EditEmployee_Closing(object sender, System.ComponentModel.CancelEventArgs e) 
-        //    => ListBox.ItemsSource = _Department.GetList();
-        private void BtnEditEmployee_OnClick(object Sender, RoutedEventArgs E)
+        private void BtnEditEmployee_OnClick(object sender, RoutedEventArgs e)
         {
             var selectedItem = (Employee)ListBox.SelectedItem;
 
@@ -104,9 +102,14 @@ namespace Lesson_5_WPF
             EditEmployeeWindow editEmployee = new EditEmployeeWindow(selectedItem);
             editEmployee.Title = $"Сотрудник {selectedItem.Name}";
             editEmployee.Show();
+            editEmployee.Closing += (_, _) =>
+            {
+                ListBox.ItemsSource = null;
+                ListBox.ItemsSource = Core.Department.GetList();
+            };
         }
 
-        private void BtnAddEmployee_OnClick(object Sender, RoutedEventArgs E)
+        private void BtnAddEmployee_OnClick(object sender, RoutedEventArgs e)
         {
             if (cbDepartments.SelectedItem == null)
             {
@@ -119,7 +122,7 @@ namespace Lesson_5_WPF
             editEmployee.Show();
         }
 
-        private void BtnRemoveEmployee_OnClick(object Sender, RoutedEventArgs E)
+        private void BtnRemoveEmployee_OnClick(object sender, RoutedEventArgs e)
         {
             if (cbDepartments.SelectedItem == null)
             {
@@ -135,16 +138,22 @@ namespace Lesson_5_WPF
                 return;
             }
             Core.Department.RemoveEmployee((Employee)ListBox.SelectedItem);
+            //UpdateLists();
         }
 
-        private void BtnAddGroup_OnClick(object Sender, RoutedEventArgs E)
+        private void BtnAddGroup_OnClick(object sender, RoutedEventArgs e)
         {
             EditWindow editWindow = new EditWindow();
             editWindow.Show();
-            editWindow.Closing += (O, Args) => Core.AddNewGroup(editWindow.tbName.Text);
+            editWindow.Closing += (_, _) =>
+            {
+                Core.AddNewGroup(editWindow.tbName.Text);
+                UpdateLists();
+                cbDepartments.SelectedItem = Core.Departments[^1];
+            };
         }
 
-        private void BtnEditGroup_OnClick(object Sender, RoutedEventArgs E)
+        private void BtnEditGroup_OnClick(object sender, RoutedEventArgs e)
         {
             if (cbDepartments.SelectedItem == null)
                 return;
@@ -152,15 +161,28 @@ namespace Lesson_5_WPF
             EditWindow editWindow = new EditWindow();
             editWindow.tbName.Text = Core.Department.Name;
             editWindow.Show();
-            editWindow.Closing += (O, Args) 
+            editWindow.Closing += (_, _) 
                 =>
             {
+                int index = cbDepartments.SelectedIndex;
                 Core.Department.Name = editWindow.tbName.Text;
-                cbDepartments.ItemsSource = Core.Departments;
+                UpdateLists();
+                cbDepartments.SelectedItem = Core.Departments[index];
             };
         }
 
-        private void BtnRemoveGroup_OnClick(object Sender, RoutedEventArgs E) 
-            => Core.Departments.Remove((Department) cbDepartments.SelectedItem);
+        private void BtnRemoveGroup_OnClick(object sender, RoutedEventArgs e)
+        {
+            Core.Departments.Remove((Department) cbDepartments.SelectedItem);
+            cbDepartments.SelectedItem = Core.Departments[0];
+        }
+
+        private void UpdateLists()
+        {
+            cbDepartments.ItemsSource = null;
+            cbDepartments.ItemsSource = Core.Departments;
+            ListBox.ItemsSource = null;
+            ListBox.ItemsSource = Core.Department.GetList();
+        }
     }
 }

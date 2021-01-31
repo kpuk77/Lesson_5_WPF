@@ -1,45 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Dynamic;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Lesson_5_WPF
 {
     public static class Core
     {
-        private static ObservableCollection<Department> _Departments;
-        private static Department _Department;
+        private static ObservableCollection<Department> __Departments;
+        private static Department __Department;
 
         public static Department Department
         {
-            get => _Department;
-            set => _Department = value;
+            get => __Department;
+            set => __Department = value;
         }
 
         public static ObservableCollection<Department> Departments
         {
-            get => _Departments;
-            set => _Departments = value;
+            get => __Departments;
+            set => __Departments = value;
         }
 
         public static void Initialize()
         {
-            _Departments = new ObservableCollection<Department>(Enumerable
+            __Departments = new ObservableCollection<Department>(Enumerable
                 .Range(1, 8)
-                .Select(s => new Department())
+                .Select(_ => new Department())
                 .ToList());
         }
 
-        public static void AddNewGroup(string Name)
+        public static void AddNewGroup(string name)
         {
-            Department department = new Department(Name);
-            _Departments.Add(department);
+            Department department = new Department(name);
+            __Departments.Add(department);
         }
     }
 }
