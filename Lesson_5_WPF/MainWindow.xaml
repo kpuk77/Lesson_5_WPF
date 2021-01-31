@@ -80,7 +80,8 @@
                  MinWidth="410" 
                  HorizontalAlignment="Center"
                  Foreground="DarkGray"
-                 FontWeight="Bold">
+                 FontWeight="Bold"
+                 MouseDoubleClick="ListBox_OnMouseDoubleClick">
         </ListBox>
         <StackPanel Grid.Column="0" Grid.Row="1">
             <Button Height="30" Background="DarkBlue"
@@ -93,6 +94,9 @@
                     FontWeight="Bold" 
                     BorderThickness="0"
                     Content="Департаменты (в разработке)"/>
+            <ComboBox Height="30"
+                      Name="cbDepartments"
+                      SelectionChanged="CbDepartments_OnSelectionChanged"/>
         </StackPanel>
         <StackPanel Grid.Column="0" Grid.Row="0" 
                     Orientation="Horizontal" 
@@ -103,10 +107,14 @@
                     FontWeight="Bold"
                     Background="DarkGreen"
                     Foreground="DarkGray" 
-                    BorderThickness="0"/>
+                    BorderThickness="0"
+                    Name="btnAddEmployee"
+                    Click="BtnAddEmployee_OnClick"/>
             <Button Width="83" Height="80"
                     Background="DarkOrange"
-                    BorderThickness="0">
+                    BorderThickness="0"
+                    Name="btnEditEmployee"
+                    Click="BtnEditEmployee_OnClick">
                 <Image Source="Resources/edit.png"
                        Width="50"/>
             </Button>

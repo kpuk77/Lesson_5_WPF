@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -6,6 +7,7 @@ namespace Lesson_5_WPF
 {
     public class Department
     {
+        private static int _Count = 0;
         private int Id { get; init; }
         private ObservableCollection<Employee> _Employees;
 
@@ -13,17 +15,19 @@ namespace Lesson_5_WPF
 
         public Department()
         {
+            _Count++;
+            Id = _Count;
+            Random rand = new Random();
             _Employees = new ObservableCollection<Employee>();
             Position p = Position.Employee;
-
+            Name = $"Группа - {rand.Next(1, 101)}";
             for (int i = 1; i <= 35; i++)
             {
                 _Employees.Add(new Employee
                 {
-                    Id = i,
-                    Name = $"Имя {i}",
-                    LastName = $"Фамилия {i}",
-                    MiddleName = $"Отчество {i}",
+                    Name = $"Имя - {i}",
+                    LastName = $"Фамилия - {i}",
+                    MiddleName = $"Отчество - {i}",
                     Age = i < 18 ? i + 20 : i,
                     Position = p++ >= Position.Trainee?Position.Freelancer : Position.Employee, //  TODO
                     Department = this
