@@ -124,7 +124,47 @@
                     FontWeight="Bold"
                     Background="DarkRed"
                     Foreground="DarkGray"
-                    BorderThickness="0"/>
+                    BorderThickness="0"
+                    Name="BtnRemoveEmployee"
+                    Click="BtnRemoveEmployee_OnClick"/>
+        </StackPanel>
+        <TextBlock Grid.Column="0" Grid.Row="2"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   Height="30"
+                   Foreground="DarkGray"
+                   FontWeight="Bold"
+                   FontSize="20"
+                   Text="Группы"/>
+        <StackPanel Grid.Column="0" Grid.Row="2" 
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Margin="0 30 0 0">
+            <Button Height="80" Width="83"
+                    Background="DarkGreen"
+                    Content="+"
+                    Foreground="DarkGray"
+                    FontWeight="Bold"
+                    FontSize="35"
+                    Name="btnAddGroup"
+                    Click="BtnAddGroup_OnClick"/>
+            <Button Width="83"
+                    Background="DarkOrange"
+                    VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    Name="btnEditGroup"
+                    Click="BtnEditGroup_OnClick">
+                <Image Source="Resources/edit.png" Width="40"/>
+            </Button>
+            <Button Width="83"
+                    Background="DarkRed"
+                    Foreground="DarkGray"
+                    Content="-"
+                    FontWeight="Bold"
+                    FontSize="35"
+                    Name="btnRemoveGroup"
+                    Click="BtnRemoveGroup_OnClick"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -35,7 +35,14 @@ namespace Lesson_5_WPF
             }
         }
 
-        public void AddEmployee(Employee Employee) => _Employees.Add(Employee);
+        public Department(string Name) : base() => this.Name = Name;
+
+        public void AddEmployee(Employee Employee)
+        {
+            if (_Employees == null)
+                _Employees = new ObservableCollection<Employee>();
+            _Employees.Add(Employee);
+        }
 
         public void RemoveEmployee(Employee Employee) => _Employees.Remove(Employee);
 
