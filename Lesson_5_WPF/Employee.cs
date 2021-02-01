@@ -2,7 +2,7 @@
 {
     public class Employee
     {
-        private static int _Count;
+        private static int __Count;
         public int Id { get; init; }
         public string Name { get; set; }
         public string LastName { get; set; }
@@ -17,8 +17,8 @@
 
         public Employee()
         {
-            _Count++;
-            Id = _Count;
+            __Count++;
+            Id = __Count;
         }
 
         public override string ToString() => $"{Id} {Name} {LastName} {MiddleName} {Age} {Position} {Department}";

@@ -21,7 +21,7 @@
         <!--<TextBox Margin="5 0" Name="tbPosition"/>-->
         <ComboBox Name="cbPosition" Margin="5 0"/>
         <TextBlock Text="Департамент:" Margin="5 5"/>
-        <TextBox Margin="5 0" Name="tbDepartment"/>
+        <ComboBox Margin="5 0" Name="cbDepartment"/>
         <Button Height="30" Width="120"
                 Margin="0 20"
                 Content="Сохранить"
