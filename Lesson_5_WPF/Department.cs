@@ -8,6 +8,7 @@ namespace Lesson_5_WPF
     {
         private static int __Count;
         private ObservableCollection<Employee> _Employees;
+        public ObservableCollection<Employee> GetList => _Employees;
 
         public string Name { get; set; }
 
@@ -79,8 +80,7 @@ namespace Lesson_5_WPF
             _Employees = sortedList;
         }
 
-        public ObservableCollection<Employee> GetList() => _Employees;
-
+        
         public override string ToString() => Name;
     }
 }

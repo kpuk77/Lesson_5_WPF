@@ -18,7 +18,7 @@ namespace Lesson_5_WPF
             tbLastName.Text = emp.LastName;
             tbMiddleName.Text = emp.MiddleName;
             tbAge.Text = emp.Age.ToString();
-            //cbPosition.SelectedItem = emp.Position;
+            //cbPosition.SelectedItem = emp.Position;                       //  TODO:   привязать ComboBox cbPosition к enum Position
             cbDepartment.ItemsSource = Core.Departments;
             cbDepartment.SelectedItem = emp.Department;
         }

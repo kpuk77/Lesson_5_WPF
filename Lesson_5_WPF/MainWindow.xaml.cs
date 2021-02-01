@@ -18,52 +18,52 @@ namespace Lesson_5_WPF
 
         private void BtnSortById_OnClick(object sender, RoutedEventArgs e)
         {
-            if (Core.Department.GetList() != null)
+            if (Core.Department.GetList != null)
                 if (!__IsSorted)
                 {
                     Core.Department.SortById();
                     __IsSorted = true;
-                    ListBox.ItemsSource = Core.Department.GetList();
+                    ListBox.ItemsSource = Core.Department.GetList;
                 }
                 else
                 {
                     Core.Department.SortByIdDescending();
                     __IsSorted = false;
-                    ListBox.ItemsSource = Core.Department.GetList();
+                    ListBox.ItemsSource = Core.Department.GetList;
                 }
         }
 
         private void BtnSortByName_OnClick(object sender, RoutedEventArgs e)
         {
-            if (Core.Department.GetList() != null)
+            if (Core.Department.GetList != null)
                 if (!__IsSorted)
                 {
                     Core.Department.SortByName();
                     __IsSorted = true;
-                    ListBox.ItemsSource = Core.Department.GetList();
+                    ListBox.ItemsSource = Core.Department.GetList;
                 }
                 else
                 {
                     Core.Department.SortByNameDescending();
                     __IsSorted = false;
-                    ListBox.ItemsSource = Core.Department.GetList();
+                    ListBox.ItemsSource = Core.Department.GetList;
                 }
         }
 
         private void BtnSortByPosition_OnClick(object sender, RoutedEventArgs e)
         {
-            if (Core.Department.GetList() != null)
+            if (Core.Department.GetList != null)
                 if (!__IsSorted)
                 {
                     Core.Department.SortByPosition();
                     __IsSorted = true;
-                    ListBox.ItemsSource = Core.Department.GetList();
+                    ListBox.ItemsSource = Core.Department.GetList;
                 }
                 else
                 {
                     Core.Department.SortByPositionDescending();
                     __IsSorted = false;
-                    ListBox.ItemsSource = Core.Department.GetList();
+                    ListBox.ItemsSource = Core.Department.GetList;
                 }
         }
 
@@ -74,7 +74,7 @@ namespace Lesson_5_WPF
             if (selectedItem == null)
                 return;
             Core.Department = selectedItem;
-            ListBox.ItemsSource = Core.Department.GetList();
+            ListBox.ItemsSource = Core.Department.GetList;
         }
 
         private void ListBox_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -91,7 +91,7 @@ namespace Lesson_5_WPF
             editEmployee.Closing += (_, _) =>
             {
                 ListBox.ItemsSource = null;
-                ListBox.ItemsSource = Core.Department.GetList();
+                ListBox.ItemsSource = Core.Department.GetList;
             };
         }
 
@@ -108,7 +108,7 @@ namespace Lesson_5_WPF
             editEmployee.Closing += (_, _) =>
             {
                 ListBox.ItemsSource = null;
-                ListBox.ItemsSource = Core.Department.GetList();
+                ListBox.ItemsSource = Core.Department.GetList;
             };
         }
 
@@ -126,7 +126,7 @@ namespace Lesson_5_WPF
             editEmployee.Closing += (_, _) =>
             {
                 ListBox.ItemsSource = null;
-                ListBox.ItemsSource = Core.Department.GetList();
+                ListBox.ItemsSource = Core.Department.GetList;
             };
         }
 
@@ -197,7 +197,7 @@ namespace Lesson_5_WPF
             cbDepartments.ItemsSource = null;
             cbDepartments.ItemsSource = Core.Departments;
             ListBox.ItemsSource = null;
-            ListBox.ItemsSource = Core.Department.GetList();
+            ListBox.ItemsSource = Core.Department.GetList;
         }
     }
 }
